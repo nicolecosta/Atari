@@ -68,7 +68,18 @@ class Player(pygame.sprite.Sprite):
         
         #Depois de desenhar tudo, inverte o display
         pygame.display.flip()
-                                       
+
+class Mob():
+
+    #Carrega imagem meteoro
+    meteoro_img= pygame.image.load(path.join(img_dir,"meteorBrown_med1.png")).convert()     
+
+    #Posição inical aleatória meteoro
+    self.rect = self.image.get_rect() 
+
+    #Velocidade do meteoro
+    self.speedx=[-3,3]
+    self.speedy=[2,9]                            
 
 # Inicialização do Pygame.
 pygame.init()
@@ -86,6 +97,20 @@ clock = pygame.time.Clock()
 # Carrega o fundo do jogo
 background = pygame.image.load(path.join(img_dir, 'starfield.png')).convert()
 background_rect = background.get_rect()
+
+#Cria uma nave. O construtor será chamado automaticamente
+player=Player()
+
+#Cria um grupo de sprites e adiciona a nave
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
+
+#Cria grupo mobs
+mobs = Mobs()
+
+#Cria um grupo de sprites e adiciona mobs
+mobs_sprites = pygame.sprite.Group()
+mobs_sprites.add(mobs)
 
 # Comando para evitar travamentos.
 try:
